@@ -1,4 +1,0 @@
-CREATE TABLE users (
-    id TEXT PRIMARY KEY,  -- Clerk user ID
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
