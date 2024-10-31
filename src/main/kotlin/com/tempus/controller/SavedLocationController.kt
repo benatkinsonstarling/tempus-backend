@@ -23,6 +23,14 @@ open class LocationController(
         return HttpResponse.ok(locationService.getUserLocations(authentication.name))
     }
 
+    @Delete("{savedLocationId}")
+    open fun deleteSavedLocation(authentication: Authentication,
+                                 @QueryValue savedLocationId: Long):
+            HttpResponse<Any> {
+        locationService.deleteSavedLocation(savedLocationId);
+        return HttpResponse.ok()
+    }
+
     @Post("/save")
     open fun saveLocation(
         authentication: Authentication,

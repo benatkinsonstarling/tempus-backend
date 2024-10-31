@@ -36,6 +36,7 @@ micronaut:
             - POST
             - GET
             - OPTIONS
+            - DELETE
           allowedHeaders:
             - Content-Type
             - Authorization

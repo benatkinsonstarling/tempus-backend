@@ -31,7 +31,7 @@ class ClerkAuthenticationFilter(
         // Handle OPTIONS requests with CORS headers
         if (request.method == HttpMethod.OPTIONS) {
             val response = HttpResponse.ok<Any>()
-                .header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+                .header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
                 .header("Access-Control-Allow-Headers", "Content-Type, Authorization")
                 .header("Access-Control-Allow-Origin", request.headers["Origin"] ?: "*")
                 .header("Access-Control-Allow-Credentials", "true")

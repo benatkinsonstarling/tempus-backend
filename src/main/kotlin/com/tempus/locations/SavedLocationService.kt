@@ -27,4 +27,7 @@ open class SavedLocationService (
         locationRepository.findByUserId(userId)
             .map(SavedLocation::toDto)
 
+    fun deleteSavedLocation(id: Long) {
+        locationRepository.deleteById(id)
+    }
 }
