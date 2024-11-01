@@ -9,6 +9,8 @@ import io.micronaut.security.annotation.Secured
 import io.micronaut.security.authentication.Authentication
 import io.micronaut.security.rules.SecurityRule
 import jakarta.validation.Valid
+import org.slf4j.LoggerFactory
+import kotlin.math.log
 
 
 @Controller("/api/locations")
@@ -16,6 +18,7 @@ import jakarta.validation.Valid
 open class LocationController(
     private val locationService: SavedLocationService
 ) {
+    private val logger = LoggerFactory.getLogger(ClerkAuthenticationProvider::class.java)
 
     @Get
     open fun getUsersSavedLocations(authentication: Authentication):
@@ -41,5 +44,14 @@ open class LocationController(
         return HttpResponse.created(
             locationService.saveLocation(authentication.name, request)
         )
+    }
+
+    @Post("/{id}/favorite")
+    open fun toggleFavorite(
+        authentication: Authentication,
+        @QueryValue id: Long
+    ): HttpResponse<SavedLocationResponse> {
+        logger.debug("recjsncdanl")
+        return HttpResponse.ok(locationService.toggleFavourite(id, authentication.name))
     }
 }

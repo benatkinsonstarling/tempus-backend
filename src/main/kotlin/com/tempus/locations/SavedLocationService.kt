@@ -30,4 +30,19 @@ open class SavedLocationService (
     fun deleteSavedLocation(id: Long) {
         locationRepository.deleteById(id)
     }
+
+    fun toggleFavourite(
+        id: Long,
+        userId: String) : SavedLocationResponse{
+        val location = locationRepository.findById(id)
+            .orElseThrow()
+
+        if (location.userId != userId) {
+            throw RuntimeException(String.format("You nasty piece of work!"))
+        }
+
+        locationRepository.updateIsFavoriteByIdAndUserId(id, userId, !location.isFavorite)
+
+        return locationRepository.findById(id).get().toDto()
+    }
 }

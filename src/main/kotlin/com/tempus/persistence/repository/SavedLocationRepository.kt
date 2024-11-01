@@ -9,4 +9,5 @@ interface SavedLocationRepository : PageableRepository<SavedLocation, Long> {
 
     fun existsByUserIdAndLatitudeAndLongitude(userId: String, latitude: Double, longitude: Double): Boolean
     fun findByUserId(userId: String): List<SavedLocation>
+    fun updateIsFavoriteByIdAndUserId(id: Long, userId: String, isFavorite: Boolean)
 }
